@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📐 Grade 11 Advanced Inspire - Complex Numbers & Polar Form (1.5)</title>
+    <title>📐 Grade 11 Advanced Math - Vectors (7.1 - 7.5)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,75 +22,66 @@
         .grade-pass { background: #dbeafe; color: #1e40af; }
         .grade-fail { background: #fee2e2; color: #991b1b; }
         
-        /* Language Switcher */
         .lang-switch {
             position: fixed; top: 16px; left: 16px; z-index: 100;
             background: white; padding: 6px; border-radius: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; gap: 4px;
-            border: 2px solid #0d9488;
+            border: 2px solid #4F46E5;
         }
-        [dir="ltr"] .lang-switch { left: auto; right: 16px; }
+        body.en-mode .lang-switch { left: auto; right: 16px; }
         .lang-btn {
             padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold;
             transition: all 0.3s; border: none; font-size: 0.875rem;
             background: transparent; color: #6b7280;
         }
-        .lang-btn.active { background: #0d9488; color: white; box-shadow: 0 2px 6px rgba(13,148,136,0.4); }
-        .lang-btn:hover:not(.active) { background: #f0fdfa; color: #0d9488; }
+        .lang-btn.active { background: #4F46E5; color: white; box-shadow: 0 2px 6px rgba(79,70,229,0.4); }
+        .lang-btn:hover:not(.active) { background: #eef2ff; color: #4F46E5; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 p-4 md:p-8 min-h-screen">
 
-    <!-- Language Switcher -->
     <div class="lang-switch no-print">
         <button class="lang-btn active" onclick="setLanguage('ar')" id="btn-ar">عربي</button>
         <button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
     </div>
 
-    <!-- Timer -->
     <div id="timer-container" class="max-w-4xl mx-auto mb-4 text-center no-print">
-        <div class="bg-white p-4 rounded-xl shadow-md inline-block border-2 border-teal-100">
+        <div class="bg-white p-4 rounded-xl shadow-md inline-block border-2 border-indigo-100">
             <span class="text-gray-600 ml-2" data-ar="⏱️ الوقت المتبقي:" data-en="⏱️ Time Remaining:">⏱️ الوقت المتبقي:</span>
-            <span id="timer" class="text-2xl font-bold text-teal-600 font-mono">45:00</span>
+            <span id="timer" class="text-2xl font-bold text-indigo-600 font-mono">45:00</span>
         </div>
     </div>
 
-    <!-- Controls -->
     <div class="max-w-4xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
-        <button onclick="toggleAnswers()" class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="👁️ إظهار / إخفاء الإجابات" data-en="👁️ Show / Hide Answers">👁️ إظهار / إخفاء الإجابات</button>
+        <button onclick="toggleAnswers()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="👁️ إظهار / إخفاء الإجابات" data-en="👁️ Show / Hide Answers">👁️ إظهار / إخفاء الإجابات</button>
         <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="🖨️ طباعة / PDF" data-en="🖨️ Print / PDF">🖨️ طباعة / PDF</button>
     </div>
 
-    <!-- Header -->
-    <header class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-r-4 border-teal-600">
+    <header class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-r-4 border-indigo-600">
         <div class="text-center">
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-ar="📐 رياضيات الصف الحادي عشر متقدم - Inspire" data-en="📐 Grade 11 Advanced Mathematics - Inspire">📐 رياضيات الصف الحادي عشر متقدم - Inspire</h1>
-            <h2 class="text-lg text-teal-600 font-semibold" data-ar="الدرس 1.5: الأعداد المركبة والصيغة القطبية" data-en="Lesson 1.5: Complex Numbers & Polar Form">الدرس 1.5: الأعداد المركبة والصيغة القطبية</h2>
-            <p class="text-sm text-gray-600 mt-2" data-ar="الصيغة القطبية، نظرية ديموافر، والجذور النونية للأعداد المركبة" data-en="Polar Form, De Moivre's Theorem & Roots of Complex Numbers">الصيغة القطبية، نظرية ديموافر، والجذور النونية للأعداد المركبة</p>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-ar="📐 رياضيات الصف الحادي عشر متقدم" data-en="📐 Grade 11 Advanced Mathematics">📐 رياضيات الصف الحادي عشر متقدم</h1>
+            <h2 class="text-lg text-indigo-600 font-semibold" data-ar="الوحدة الأولى: المتجهات (7.1 - 7.5)" data-en="Unit 1: Vectors (7.1 - 7.5)">الوحدة الأولى: المتجهات (7.1 - 7.5)</h2>
+            <p class="text-sm text-gray-600 mt-2" data-ar="العمليات الأساسية، الضرب النقطي، الضرب المتجهي، والمتجهات في الفضاء" data-en="Basic Operations, Dot Product, Cross Product & Vectors in Space">العمليات الأساسية، الضرب النقطي، الضرب المتجهي، والمتجهات في الفضاء</p>
         </div>
         <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
             <span><span data-ar="📅 التاريخ:" data-en="📅 Date:">📅 التاريخ:</span> <input type="text" class="border-b border-gray-400 bg-transparent w-28 text-center"></span>
             <span><span data-ar="👤 الاسم:" data-en="👤 Name:">👤 الاسم:</span> <input type="text" id="studentName" class="border-b border-gray-400 bg-transparent w-32 text-center" placeholder="Enter name"></span>
             <span><span data-ar="🏫 الشعبة:" data-en="🏫 Class:">🏫 الشعبة:</span> <input type="text" id="studentClass" class="border-b border-gray-400 bg-transparent w-28 text-center" placeholder="Class"></span>
             <span><span data-ar="⏱️ المدة: 45 دقيقة" data-en="⏱️ Duration: 45 min">⏱️ المدة: 45 دقيقة</span></span>
-            <span><span data-ar="📊 المجموع: 100 درجة" data-en="📊 Total: 100 pts">📊 المجموع: 100 درجة</span></span>
+            <span><span data-ar="📊 المجموع: 100 درجة" data-en="📊 Total: 100 Marks">📊 المجموع: 100 درجة</span></span>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto space-y-8" id="exam-content">
-        <!-- Questions rendered by JS -->
-    </main>
+    <main class="max-w-4xl mx-auto space-y-8" id="exam-content"></main>
 
-    <!-- Submit Button -->
     <div class="text-center no-print pb-8 mt-8">
         <button onclick="gradeExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📝 تسليم وتصحيح الامتحان" data-en="📝 Submit & Grade Exam">📝 تسليم وتصحيح الامتحان</button>
     </div>
 
-    <!-- Results Panel -->
     <div id="results-panel" class="max-w-4xl mx-auto mt-8 bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-emerald-500 hidden no-print">
         <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center" data-ar="📊 نتائج الامتحان" data-en="📊 Exam Results">📊 نتائج الامتحان</h2>
         <div class="grid md:grid-cols-3 gap-4 mb-6">
-            <div class="bg-blue-50 p-4 rounded-xl text-center"><p data-ar="اسم الطالب" data-en="Student Name">اسم الطالب</p><p id="res-name" class="font-bold text-xl text-teal-700">-</p></div>
+            <div class="bg-blue-50 p-4 rounded-xl text-center"><p data-ar="اسم الطالب" data-en="Student Name">اسم الطالب</p><p id="res-name" class="font-bold text-xl text-indigo-700">-</p></div>
             <div class="bg-purple-50 p-4 rounded-xl text-center"><p data-ar="التاريخ" data-en="Date">التاريخ</p><p id="res-date" class="font-bold text-xl text-purple-700">-</p></div>
             <div class="bg-emerald-50 p-4 rounded-xl text-center"><p data-ar="المجموع" data-en="Score">المجموع</p><p id="res-total" class="font-bold text-3xl text-emerald-600">0 / 100</p></div>
         </div>
@@ -105,26 +96,30 @@
             <h3 class="font-bold text-lg mb-4 text-gray-800" data-ar="📈 تفصيل الأداء حسب القسم:" data-en="📈 Performance Breakdown:">📈 تفصيل الأداء حسب القسم:</h3>
             <div class="space-y-3">
                 <div class="flex justify-between items-center">
-                    <span class="text-gray-700" data-ar="المستوى المركب والتحويل القطبي" data-en="Complex Plane & Polar Conversion">المستوى المركب والتحويل القطبي</span>
-                    <span id="sec1-score" class="font-bold text-teal-600">0/4</span>
+                    <span class="text-gray-700" data-ar="مقدمة في المتجهات والعمليات" data-en="Introduction & Operations">مقدمة في المتجهات والعمليات</span>
+                    <span id="sec1-score" class="font-bold text-indigo-600">0/4</span>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="text-gray-700" data-ar="الضرب والقسمة القطبية" data-en="Multiplication & Division in Polar Form">الضرب والقسمة القطبية</span>
-                    <span id="sec2-score" class="font-bold text-teal-600">0/4</span>
+                    <span class="text-gray-700" data-ar="المتجهات في المستوى الإحداثي" data-en="Vectors in Coordinate Plane">المتجهات في المستوى الإحداثي</span>
+                    <span id="sec2-score" class="font-bold text-indigo-600">0/4</span>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="text-gray-700" data-ar="نظرية ديموافر" data-en="De Moivre's Theorem">نظرية ديموافر</span>
-                    <span id="sec3-score" class="font-bold text-teal-600">0/4</span>
+                    <span class="text-gray-700" data-ar="الضرب النقطي ومساقط المتجهات" data-en="Dot Product & Projections">الضرب النقطي ومساقط المتجهات</span>
+                    <span id="sec3-score" class="font-bold text-indigo-600">0/4</span>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="text-gray-700" data-ar="الجذور النونية وجذور الوحدة" data-en="Roots of Complex Numbers & Unity">الجذور النونية وجذور الوحدة</span>
-                    <span id="sec4-score" class="font-bold text-teal-600">0/4</span>
+                    <span class="text-gray-700" data-ar="المتجهات في الفضاء ثلاثي الأبعاد" data-en="Vectors in 3D Space">المتجهات في الفضاء ثلاثي الأبعاد</span>
+                    <span id="sec4-score" class="font-bold text-indigo-600">0/4</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-700" data-ar="الضرب المتجهي وتطبيقاته" data-en="Cross Product & Applications">الضرب المتجهي وتطبيقاته</span>
+                    <span id="sec5-score" class="font-bold text-indigo-600">0/4</span>
                 </div>
             </div>
         </div>
 
         <div class="text-center mb-6">
-            <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white text-lg px-8 py-3 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📧 إرسال النتائج للمعلم" data-en="📧 Send Results to Teacher">📧 إرسال النتائج للمعلم</button>
+            <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-lg px-8 py-3 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📧 إرسال النتائج للمعلم" data-en="📧 Send Results to Teacher">📧 إرسال النتائج للمعلم</button>
             <p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
         </div>
 
@@ -134,240 +129,282 @@
     </div>
 
     <footer class="max-w-4xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
-        © <span data-ar="الرياضيات للصف الحادي عشر متقدم - Inspire | الدرس 1.5: الأعداد المركبة والصيغة القطبية" data-en="Grade 11 Advanced Math - Inspire | Lesson 1.5: Complex Numbers & Polar Form">الرياضيات للصف الحادي عشر متقدم - Inspire | الدرس 1.5: الأعداد المركبة والصيغة القطبية</span> | Mr. Mohammed Hesham
+        <span data-ar="© الرياضيات للصف الحادي عشر متقدم | الوحدة الأولى: المتجهات" data-en="© Grade 11 Advanced Math | Unit 1: Vectors">© الرياضيات للصف الحادي عشر متقدم | الوحدة الأولى: المتجهات</span> | Mr. Mohammed Hesham
     </footer>
 
 <script>
-// ==================== EXAM DATA (BILINGUAL) ====================
 const examData = {
     sections: [
         {
             id: 'sec1',
-            title: { ar: '🔹 الجزء الأول: المستوى المركب والتحويل للصيغة القطبية', en: '🔹 Part 1: Complex Plane & Polar Conversion' },
+            title: { ar: '🔹 الجزء الأول: مقدمة في المتجهات والعمليات الأساسية', en: '🔹 Part 1: Introduction to Vectors & Basic Operations' },
             questions: [
                 {
-                    q: { ar: 'في المستوى المركب، يُرسم العدد z = a + bi كنقطة إحداثياتها:', en: 'In the complex plane, the number z = a + bi is plotted as a point with coordinates:' },
+                    q: { ar: 'أي مما يلي يمثل كمية متجهة (Vector)؟', en: 'Which of the following represents a vector quantity?' },
                     options: [
-                        { ar: '(b, a)', en: '(b, a)' },
-                        { ar: '(a, b)', en: '(a, b)' },
-                        { ar: '(r, θ)', en: '(r, θ)' },
-                        { ar: '(a, -b)', en: '(a, -b)' }
+                        { ar: 'الكتلة (Mass)', en: 'Mass' },
+                        { ar: 'السرعة (Velocity)', en: 'Velocity' },
+                        { ar: 'الزمن (Time)', en: 'Time' },
+                        { ar: 'درجة الحرارة (Temperature)', en: 'Temperature' }
                     ],
                     correct: 1,
-                    answer: { ar: 'المحور الأفقي للجزء الحقيقي a والرأسي للتخيلي b', en: 'Horizontal axis for real part a, vertical for imaginary part b' }
+                    answer: { ar: 'السرعة لها مقدار واتجاه، بينما الباقي كميات قياسية', en: 'Velocity has magnitude and direction, while others are scalars' }
                 },
                 {
-                    q: { ar: 'معيار (Modulus) العدد المركب z = -6 + 8i يساوي:', en: 'The modulus of the complex number z = -6 + 8i equals:' },
+                    q: { ar: 'إذا كان u = 〈3, -2〉 و v = 〈5, 7〉، فما هو u + v؟', en: 'If u = 〈3, -2〉 and v = 〈5, 7〉, what is u + v?' },
                     options: [
-                        { ar: '10', en: '10' },
-                        { ar: '14', en: '14' },
-                        { ar: '√28', en: '√28' },
-                        { ar: '-10', en: '-10' }
+                        { ar: '〈8, 5〉', en: '〈8, 5〉' },
+                        { ar: '〈-2, -9〉', en: '〈-2, -9〉' },
+                        { ar: '〈15, -14〉', en: '〈15, -14〉' },
+                        { ar: '〈2, 9〉', en: '〈2, 9〉' }
                     ],
                     correct: 0,
-                    answer: { ar: 'r = √((-6)² + 8²) = √(36+64) = √100 = 10', en: 'r = √((-6)² + 8²) = √(36+64) = √100 = 10' }
+                    answer: { ar: 'u + v = 〈3+5, -2+7〉 = 〈8, 5〉', en: 'u + v = 〈3+5, -2+7〉 = 〈8, 5〉' }
                 },
                 {
-                    q: { ar: 'عند إيجاد الزاوية θ للعدد -6 + 8i، بما أن a سالب و b موجب (الربع الثاني)، فإن:', en: 'When finding angle θ for -6 + 8i, since a is negative and b is positive (Q2), we:' },
+                    q: { ar: 'إذا كان u = 〈-4, 6〉 و v = 〈-5, -2〉، فما هو u · v (الضرب النقطي)؟', en: 'If u = 〈-4, 6〉 and v = 〈-5, -2〉, what is u · v (dot product)?' },
                     options: [
-                        { ar: 'θ = tan⁻¹(b/a) مباشرة', en: 'θ = tan⁻¹(b/a) directly' },
-                        { ar: 'θ = tan⁻¹(b/a) + 180°', en: 'θ = tan⁻¹(b/a) + 180°' },
-                        { ar: 'θ = tan⁻¹(a/b)', en: 'θ = tan⁻¹(a/b)' },
-                        { ar: 'θ = tan⁻¹(b/a) + 90°', en: 'θ = tan⁻¹(b/a) + 90°' }
+                        { ar: '8', en: '8' },
+                        { ar: '-8', en: '-8' },
+                        { ar: '32', en: '32' },
+                        { ar: '-32', en: '-32' }
                     ],
-                    correct: 1,
-                    answer: { ar: 'يجب إضافة 180° لأن الآلة تعطي الربع الرابع للنسبة السالبة', en: 'Must add 180° because calculator gives Q4 for negative ratio' }
+                    correct: 0,
+                    answer: { ar: 'u · v = (-4)(-5) + (6)(-2) = 20 - 12 = 8', en: 'u · v = (-4)(-5) + (6)(-2) = 20 - 12 = 8' }
                 },
                 {
-                    q: { ar: 'الصيغة القطبية للعدد -6 + 8i هي تقريباً:', en: 'The polar form of -6 + 8i is approximately:' },
+                    q: { ar: 'إذا كانت v = 〈3, 4〉، فما هو |v| (مقدار المتجه)؟', en: 'If v = 〈3, 4〉, what is |v| (magnitude of vector)?' },
                     options: [
-                        { ar: '10(cos 53.1° + i sin 53.1°)', en: '10(cos 53.1° + i sin 53.1°)' },
-                        { ar: '10(cos 126.9° + i sin 126.9°)', en: '10(cos 126.9° + i sin 126.9°)' },
-                        { ar: '10(cos 233.1° + i sin 233.1°)', en: '10(cos 233.1° + i sin 233.1°)' },
-                        { ar: '8(cos 126.9° + i sin 126.9°)', en: '8(cos 126.9° + i sin 126.9°)' }
+                        { ar: '5', en: '5' },
+                        { ar: '7', en: '7' },
+                        { ar: '12', en: '12' },
+                        { ar: '25', en: '25' }
                     ],
-                    correct: 1,
-                    answer: { ar: 'r=10 والزاوية في الربع الثاني ≈ 126.9°', en: 'r=10 and angle in Q2 ≈ 126.9°' }
+                    correct: 0,
+                    answer: { ar: '|v| = √(3² + 4²) = √(9+16) = √25 = 5', en: '|v| = √(3² + 4²) = √(9+16) = √25 = 5' }
                 }
             ]
         },
         {
             id: 'sec2',
-            title: { ar: '🔹 الجزء الثاني: الضرب والقسمة في الصيغة القطبية', en: '🔹 Part 2: Multiplication & Division in Polar Form' },
+            title: { ar: '🔹 الجزء الثاني: المتجهات في المستوى الإحداثي', en: '🔹 Part 2: Vectors in the Coordinate Plane' },
             questions: [
                 {
-                    q: { ar: 'عند ضرب عددين مركبين بالصيغة القطبية، نقوم بـ:', en: 'When multiplying two complex numbers in polar form, we:' },
+                    q: { ar: 'إذا كانت نقطة البداية A(-4, 2) ونقطة النهاية B(3, -5)، فما هو المتجه AB؟', en: 'If initial point A(-4, 2) and terminal point B(3, -5), what is vector AB?' },
                     options: [
-                        { ar: 'جمع المعيارين وجمع الزاويتين', en: 'Add the moduli and add the angles' },
-                        { ar: 'ضرب المعيارين وطرح الزاويتين', en: 'Multiply the moduli and subtract the angles' },
-                        { ar: 'ضرب المعيارين وجمع الزاويتين', en: 'Multiply the moduli and add the angles' },
-                        { ar: 'قسمة المعيارين وجمع الزاويتين', en: 'Divide the moduli and add the angles' }
-                    ],
-                    correct: 2,
-                    answer: { ar: 'القاعدة: اضرب المعايير واجمع الزوايا', en: 'Rule: Multiply moduli and add angles' }
-                },
-                {
-                    q: { ar: 'عند قسمة عددين مركبين بالصيغة القطبية، نقوم بـ:', en: 'When dividing two complex numbers in polar form, we:' },
-                    options: [
-                        { ar: 'قسمة المعيارين وجمع الزاويتين', en: 'Divide the moduli and add the angles' },
-                        { ar: 'قسمة المعيارين وطرح الزاويتين', en: 'Divide the moduli and subtract the angles' },
-                        { ar: 'ضرب المعيارين وطرح الزاويتين', en: 'Multiply the moduli and subtract the angles' },
-                        { ar: 'طرح المعيارين وطرح الزاويتين', en: 'Subtract the moduli and subtract the angles' }
-                    ],
-                    correct: 1,
-                    answer: { ar: 'القاعدة: اقسم المعايير واطرح الزوايا', en: 'Rule: Divide moduli and subtract angles' }
-                },
-                {
-                    q: { ar: 'إذا كان z₁ = 4 cis 30° و z₂ = 2 cis 70°، فإن z₁ · z₂ يساوي:', en: 'If z₁ = 4 cis 30° and z₂ = 2 cis 70°, then z₁ · z₂ equals:' },
-                    options: [
-                        { ar: '8 cis 100°', en: '8 cis 100°' },
-                        { ar: '6 cis 100°', en: '6 cis 100°' },
-                        { ar: '8 cis 40°', en: '8 cis 40°' },
-                        { ar: '2 cis 40°', en: '2 cis 40°' }
+                        { ar: '〈7, -7〉', en: '〈7, -7〉' },
+                        { ar: '〈-7, 7〉', en: '〈-7, 7〉' },
+                        { ar: '〈-1, -3〉', en: '〈-1, -3〉' },
+                        { ar: '〈1, 3〉', en: '〈1, 3〉' }
                     ],
                     correct: 0,
-                    answer: { ar: '4×2 = 8 و 30°+70° = 100°', en: '4×2 = 8 and 30°+70° = 100°' }
+                    answer: { ar: 'AB = 〈3-(-4), -5-2〉 = 〈7, -7〉', en: 'AB = 〈3-(-4), -5-2〉 = 〈7, -7〉' }
                 },
                 {
-                    q: { ar: 'إذا كان z₁ = 10 cis 80° و z₂ = 5 cis 30°، فإن z₁ / z₂ يساوي:', en: 'If z₁ = 10 cis 80° and z₂ = 5 cis 30°, then z₁ / z₂ equals:' },
+                    q: { ar: 'ما هو متجه الوحدة في اتجاه v = 〈3, 4〉؟', en: 'What is the unit vector in the direction of v = 〈3, 4〉?' },
                     options: [
-                        { ar: '2 cis 110°', en: '2 cis 110°' },
-                        { ar: '5 cis 50°', en: '5 cis 50°' },
-                        { ar: '2 cis 50°', en: '2 cis 50°' },
-                        { ar: '15 cis 50°', en: '15 cis 50°' }
+                        { ar: '〈3/5, 4/5〉', en: '〈3/5, 4/5〉' },
+                        { ar: '〈3, 4〉', en: '〈3, 4〉' },
+                        { ar: '〈1, 1〉', en: '〈1, 1〉' },
+                        { ar: '〈5, 5〉', en: '〈5, 5〉' }
                     ],
-                    correct: 2,
-                    answer: { ar: '10÷5 = 2 و 80°-30° = 50°', en: '10÷5 = 2 and 80°-30° = 50°' }
+                    correct: 0,
+                    answer: { ar: 'û = v/|v| = 〈3/5, 4/5〉 حيث |v| = 5', en: 'û = v/|v| = 〈3/5, 4/5〉 where |v| = 5' }
+                },
+                {
+                    q: { ar: 'إذا كان u = 〈-4, 2, -3〉 و v = 〈5, 1, 4〉، فما هو u · v؟', en: 'If u = 〈-4, 2, -3〉 and v = 〈5, 1, 4〉, what is u · v?' },
+                    options: [
+                        { ar: '-30', en: '-30' },
+                        { ar: '30', en: '30' },
+                        { ar: '-22', en: '-22' },
+                        { ar: '22', en: '22' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'u · v = (-4)(5) + (2)(1) + (-3)(4) = -20 + 2 - 12 = -30', en: 'u · v = (-4)(5) + (2)(1) + (-3)(4) = -20 + 2 - 12 = -30' }
+                },
+                {
+                    q: { ar: 'إذا كانت v = 〈6, 8〉، فما هو |v|؟', en: 'If v = 〈6, 8〉, what is |v|?' },
+                    options: [
+                        { ar: '10', en: '10' },
+                        { ar: '14', en: '14' },
+                        { ar: '48', en: '48' },
+                        { ar: '100', en: '100' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '|v| = √(6² + 8²) = √(36+64) = √100 = 10', en: '|v| = √(6² + 8²) = √(36+64) = √100 = 10' }
                 }
             ]
         },
         {
             id: 'sec3',
-            title: { ar: '🔹 الجزء الثالث: نظرية ديموافر للرفع لأس', en: '🔹 Part 3: De Moivre\'s Theorem for Powers' },
+            title: { ar: '🔹 الجزء الثالث: الضرب النقطي ومساقط المتجهات', en: '🔹 Part 3: Dot Product & Projections' },
             questions: [
                 {
-                    q: { ar: 'وفقاً لنظرية ديموافر، [r(cos θ + i sin θ)]ⁿ يساوي:', en: 'According to De Moivre\'s Theorem, [r(cos θ + i sin θ)]ⁿ equals:' },
+                    q: { ar: 'إذا كان u = 〈3, 2, -1〉 و v = 〈-4, 3, -2〉، فما هي الزاوية بينهما؟', en: 'If u = 〈3, 2, -1〉 and v = 〈-4, 3, -2〉, what is the angle between them?' },
                     options: [
-                        { ar: 'rⁿ(cos θ + i sin θ)', en: 'rⁿ(cos θ + i sin θ)' },
-                        { ar: 'r(cos nθ + i sin nθ)', en: 'r(cos nθ + i sin nθ)' },
-                        { ar: 'rⁿ(cos nθ + i sin nθ)', en: 'rⁿ(cos nθ + i sin nθ)' },
-                        { ar: 'nr(cos θ + i sin θ)', en: 'nr(cos θ + i sin θ)' }
-                    ],
-                    correct: 2,
-                    answer: { ar: 'نرفع المعيار للأس n ونضرب الزاوية في n', en: 'Raise modulus to power n and multiply angle by n' }
-                },
-                {
-                    q: { ar: 'لحساب (4 + 4√3 i)⁶، نحول أولاً للصيغة القطبية حيث r و θ يساويان:', en: 'To calculate (4 + 4√3 i)⁶, we first convert to polar form where r and θ equal:' },
-                    options: [
-                        { ar: 'r = 4, θ = 60°', en: 'r = 4, θ = 60°' },
-                        { ar: 'r = 8, θ = 30°', en: 'r = 8, θ = 30°' },
-                        { ar: 'r = 8, θ = 60°', en: 'r = 8, θ = 60°' },
-                        { ar: 'r = 16, θ = 60°', en: 'r = 16, θ = 60°' }
-                    ],
-                    correct: 2,
-                    answer: { ar: 'r = √(16+48) = 8 و tan θ = 4√3/4 = √3 → θ = 60°', en: 'r = √(16+48) = 8 and tan θ = 4√3/4 = √3 → θ = 60°' }
-                },
-                {
-                    q: { ar: 'بتطبيق ديموافر على السؤال السابق، الزاوية الجديدة تصبح:', en: 'Applying De Moivre to the previous question, the new angle becomes:' },
-                    options: [
-                        { ar: '60°', en: '60°' },
-                        { ar: '360°', en: '360°' },
-                        { ar: '720°', en: '720°' },
-                        { ar: '300°', en: '300°' }
-                    ],
-                    correct: 1,
-                    answer: { ar: '6 × 60° = 360°', en: '6 × 60° = 360°' }
-                },
-                {
-                    q: { ar: 'الناتج النهائي لـ (4 + 4√3 i)⁶ هو:', en: 'The final result of (4 + 4√3 i)⁶ is:' },
-                    options: [
-                        { ar: '262,144 (عدد حقيقي بحت)', en: '262,144 (pure real number)' },
-                        { ar: '262,144 i', en: '262,144 i' },
-                        { ar: '-262,144', en: '-262,144' },
-                        { ar: '8⁶(cos 60° + i sin 60°)', en: '8⁶(cos 60° + i sin 60°)' }
+                        { ar: '101.5°', en: '101.5°' },
+                        { ar: '78.5°', en: '78.5°' },
+                        { ar: '90°', en: '90°' },
+                        { ar: '45°', en: '45°' }
                     ],
                     correct: 0,
-                    answer: { ar: 'cos 360° = 1 و sin 360° = 0 → الناتج 8⁶ = 262,144', en: 'cos 360° = 1 and sin 360° = 0 → result is 8⁶ = 262,144' }
+                    answer: { ar: 'cos θ = (u·v)/(|u||v|) = -4/√(14×29) ≈ -0.2، θ ≈ 101.5°', en: 'cos θ = (u·v)/(|u||v|) = -4/√(14×29) ≈ -0.2, θ ≈ 101.5°' }
+                },
+                {
+                    q: { ar: 'إذا كان u · v = 0، فما العلاقة بين المتجهين؟', en: 'If u · v = 0, what is the relationship between the vectors?' },
+                    options: [
+                        { ar: 'متوازيان', en: 'Parallel' },
+                        { ar: 'متعامدان', en: 'Orthogonal' },
+                        { ar: 'متساويان', en: 'Equal' },
+                        { ar: 'متعاكسان', en: 'Opposite' }
+                    ],
+                    correct: 1,
+                    answer: { ar: 'إذا كان الضرب النقطي صفراً، فالمتجهان متعامدان', en: 'If dot product is zero, vectors are orthogonal' }
+                },
+                {
+                    q: { ar: 'ما هو إسقاط u على v (proj_v u) إذا كان u = 〈3, 4〉 و v = 〈1, 0〉؟', en: 'What is the projection of u on v (proj_v u) if u = 〈3, 4〉 and v = 〈1, 0〉?' },
+                    options: [
+                        { ar: '〈3, 0〉', en: '〈3, 0〉' },
+                        { ar: '〈0, 4〉', en: '〈0, 4〉' },
+                        { ar: '〈3, 4〉', en: '〈3, 4〉' },
+                        { ar: '〈4, 3〉', en: '〈4, 3〉' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'proj_v u = [(u·v)/|v|²]v = [3/1]〈1, 0〉 = 〈3, 0〉', en: 'proj_v u = [(u·v)/|v|²]v = [3/1]〈1, 0〉 = 〈3, 0〉' }
+                },
+                {
+                    q: { ar: 'إذا كان u = 〈-4, 3〉 و v = 〈3, 2〉، فما هو u · v؟', en: 'If u = 〈-4, 3〉 and v = 〈3, 2〉, what is u · v?' },
+                    options: [
+                        { ar: '-6', en: '-6' },
+                        { ar: '6', en: '6' },
+                        { ar: '18', en: '18' },
+                        { ar: '-18', en: '-18' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'u · v = (-4)(3) + (3)(2) = -12 + 6 = -6', en: 'u · v = (-4)(3) + (3)(2) = -12 + 6 = -6' }
                 }
             ]
         },
         {
             id: 'sec4',
-            title: { ar: '🔹 الجزء الرابع: الجذور النونية وجذور الوحدة', en: '🔹 Part 4: Roots of Complex Numbers & Unity' },
+            title: { ar: '🔹 الجزء الرابع: المتجهات في الفضاء ثلاثي الأبعاد', en: '🔹 Part 4: Vectors in Three-Dimensional Space' },
             questions: [
                 {
-                    q: { ar: 'أي عدد مركب له عدد من الجذور النونية من الرتبة n يساوي:', en: 'Any complex number has a number of nth roots equal to:' },
+                    q: { ar: 'إذا كانت A(3, 0, -2) و B(0, 4, -1)، فما هو |AB|؟', en: 'If A(3, 0, -2) and B(0, 4, -1), what is |AB|?' },
                     options: [
-                        { ar: 'جذراً واحداً فقط', en: 'Only one root' },
-                        { ar: 'جذرين مختلفين', en: 'Two different roots' },
-                        { ar: 'n جذوراً مختلفة', en: 'n different roots' },
-                        { ar: 'عدداً لا نهائياً من الجذور', en: 'An infinite number of roots' }
+                        { ar: '√26 ≈ 5.1', en: '√26 ≈ 5.1' },
+                        { ar: '√14 ≈ 3.7', en: '√14 ≈ 3.7' },
+                        { ar: '26', en: '26' },
+                        { ar: '14', en: '14' }
                     ],
-                    correct: 2,
-                    answer: { ar: 'دائماً يوجد n جذور مختلفة للجذر النوني', en: 'There are always n different roots for the nth root' }
+                    correct: 0,
+                    answer: { ar: 'AB = 〈-3, 4, 1〉، |AB| = √(9+16+1) = √26 ≈ 5.1', en: 'AB = 〈-3, 4, 1〉, |AB| = √(9+16+1) = √26 ≈ 5.1' }
                 },
                 {
-                    q: { ar: 'الجذور النونية لعدد مركب تقع جميعها على:', en: 'The nth roots of a complex number all lie on:' },
+                    q: { ar: 'إذا كان u = 〈-4, 2, -3〉، فما هو |u|؟', en: 'If u = 〈-4, 2, -3〉, what is |u|?' },
                     options: [
-                        { ar: 'خط مستقيم يمر بالأصل', en: 'A straight line through the origin' },
-                        { ar: 'دائرة نصف قطرها ⁿ√r', en: 'A circle of radius ⁿ√r' },
-                        { ar: 'دائرة نصف قطرها r', en: 'A circle of radius r' },
-                        { ar: 'قطع مكافئ', en: 'A parabola' }
+                        { ar: '√29 ≈ 5.4', en: '√29 ≈ 5.4' },
+                        { ar: '29', en: '29' },
+                        { ar: '√14 ≈ 3.7', en: '√14 ≈ 3.7' },
+                        { ar: '14', en: '14' }
                     ],
-                    correct: 1,
-                    answer: { ar: 'جميع الجذور تبعد مسافة ⁿ√r عن نقطة الأصل', en: 'All roots are at distance ⁿ√r from the origin' }
+                    correct: 0,
+                    answer: { ar: '|u| = √(16+4+9) = √29 ≈ 5.4', en: '|u| = √(16+4+9) = √29 ≈ 5.4' }
                 },
                 {
-                    q: { ar: 'الزاوية بين الجذور المتتالية للرتبة n تساوي:', en: 'The angle between consecutive roots of order n equals:' },
+                    q: { ar: 'إذا كانت u = 〈3, -2, 2〉 و v = 〈1, 4, -7〉، فما هو u · v؟', en: 'If u = 〈3, -2, 2〉 and v = 〈1, 4, -7〉, what is u · v?' },
                     options: [
-                        { ar: 'π/n', en: 'π/n' },
-                        { ar: '2π/n', en: '2π/n' },
-                        { ar: 'n/2π', en: 'n/2π' },
-                        { ar: '2π', en: '2π' }
+                        { ar: '-9', en: '-9' },
+                        { ar: '9', en: '9' },
+                        { ar: '19', en: '19' },
+                        { ar: '-19', en: '-19' }
                     ],
-                    correct: 1,
-                    answer: { ar: 'الجذور موزعة بانتظام بفاصل زاوي 2π/n', en: 'Roots are evenly distributed with angular spacing 2π/n' }
+                    correct: 0,
+                    answer: { ar: 'u · v = (3)(1) + (-2)(4) + (2)(-7) = 3 - 8 - 14 = -19', en: 'u · v = (3)(1) + (-2)(4) + (2)(-7) = 3 - 8 - 14 = -19' }
                 },
                 {
-                    q: { ar: 'جذور المعادلة z⁴ = 1 (جذور الوحدة الرباعية) هي:', en: 'The roots of the equation z⁴ = 1 (fourth roots of unity) are:' },
+                    q: { ar: 'إذا كانت v = 〈-3, -2, 5〉 و u = 〈3, 2, -1〉، فما هو u · v؟', en: 'If v = 〈-3, -2, 5〉 and u = 〈3, 2, -1〉, what is u · v?' },
                     options: [
-                        { ar: '1, -1 فقط', en: '1, -1 only' },
-                        { ar: '1, i, -1, -i', en: '1, i, -1, -i' },
-                        { ar: '1, -1, i', en: '1, -1, i' },
-                        { ar: '1, i, -i', en: '1, i, -i' }
+                        { ar: '-20', en: '-20' },
+                        { ar: '20', en: '20' },
+                        { ar: '-10', en: '-10' },
+                        { ar: '10', en: '10' }
                     ],
-                    correct: 1,
-                    answer: { ar: 'تقع على زوايا 0°, 90°, 180°, 270° وهي 1, i, -1, -i', en: 'Located at angles 0°, 90°, 180°, 270° which are 1, i, -1, -i' }
+                    correct: 0,
+                    answer: { ar: 'u · v = (3)(-3) + (2)(-2) + (-1)(5) = -9 - 4 - 5 = -18', en: 'u · v = (3)(-3) + (2)(-2) + (-1)(5) = -9 - 4 - 5 = -18' }
+                }
+            ]
+        },
+        {
+            id: 'sec5',
+            title: { ar: '🔹 الجزء الخامس: الضرب المتجهي وتطبيقاته', en: '🔹 Part 5: Cross Product & Applications' },
+            questions: [
+                {
+                    q: { ar: 'إذا كان u = 〈3, -2, 1〉 و v = 〈-3, 3, 1〉، فما هو u × v؟', en: 'If u = 〈3, -2, 1〉 and v = 〈-3, 3, 1〉, what is u × v?' },
+                    options: [
+                        { ar: '〈-5, -6, 3〉', en: '〈-5, -6, 3〉' },
+                        { ar: '〈5, 6, -3〉', en: '〈5, 6, -3〉' },
+                        { ar: '〈-5, 6, 3〉', en: '〈-5, 6, 3〉' },
+                        { ar: '〈5, -6, -3〉', en: '〈5, -6, -3〉' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'u × v = 〈(-2)(1)-(1)(3), (1)(-3)-(3)(1), (3)(3)-(-2)(-3)〉 = 〈-5, -6, 3〉', en: 'u × v = 〈(-2)(1)-(1)(3), (1)(-3)-(3)(1), (3)(3)-(-2)(-3)〉 = 〈-5, -6, 3〉' }
+                },
+                {
+                    q: { ar: 'إذا كان u × v = 〈-5, -6, 3〉، فما هو |u × v|؟', en: 'If u × v = 〈-5, -6, 3〉, what is |u × v|?' },
+                    options: [
+                        { ar: '√70 ≈ 8.4', en: '√70 ≈ 8.4' },
+                        { ar: '70', en: '70' },
+                        { ar: '√14 ≈ 3.7', en: '√14 ≈ 3.7' },
+                        { ar: '14', en: '14' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '|u × v| = √(25+36+9) = √70 ≈ 8.4', en: '|u × v| = √(25+36+9) = √70 ≈ 8.4' }
+                },
+                {
+                    q: { ar: 'ما هو حجم متوازي السطوح المحدد بـ u = 〈3, -2, 1〉 و v = 〈-3, 3, 1〉 و w = 〈1, 2, -1〉؟', en: 'What is the volume of parallelepiped defined by u = 〈3, -2, 1〉, v = 〈-3, 3, 1〉, w = 〈1, 2, -1〉?' },
+                    options: [
+                        { ar: '34', en: '34' },
+                        { ar: '-34', en: '-34' },
+                        { ar: '17', en: '17' },
+                        { ar: '-17', en: '-17' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'V = |w · (u × v)| = |(1)(-5) + (2)(-6) + (-1)(3)| = |-20| = 20', en: 'V = |w · (u × v)| = |(1)(-5) + (2)(-6) + (-1)(3)| = |-20| = 20' }
+                },
+                {
+                    q: { ar: 'إذا كان u · (u × v) = ؟', en: 'If u · (u × v) = ?' },
+                    options: [
+                        { ar: '0', en: '0' },
+                        { ar: '1', en: '1' },
+                        { ar: '|u|²', en: '|u|²' },
+                        { ar: '|v|²', en: '|v|²' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'u · (u × v) = 0 دائماً لأن u × v عمودي على u', en: 'u · (u × v) = 0 always because u × v is orthogonal to u' }
                 }
             ]
         }
     ]
 };
 
-// ==================== STATE ====================
 let currentLang = 'ar';
 let timeRemaining = 2700;
 let timerInterval;
 
-// ==================== LANGUAGE SWITCHER ====================
 function setLanguage(lang) {
     currentLang = lang;
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    
     document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    
     document.body.classList.toggle('en-mode', lang === 'en');
-    
     document.querySelectorAll('[data-ar][data-en]').forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
     });
-    
     renderExam();
 }
 
-// ==================== RENDER EXAM ====================
 function renderExam() {
     const container = document.getElementById('exam-content');
     const labels = {
@@ -381,14 +418,14 @@ function renderExam() {
     examData.sections.forEach((section, sIdx) => {
         html += `
         <section class="bg-white p-6 rounded-xl shadow-lg">
-            <h2 class="text-xl font-bold mb-4 text-teal-700">${section.title[currentLang]}</h2>
+            <h2 class="text-xl font-bold mb-4 text-indigo-700">${section.title[currentLang]}</h2>
             <ol id="section-${sIdx}-list" class="space-y-4 text-sm">`;
             
         section.questions.forEach((q, qIdx) => {
             const globalIdx = sIdx * 4 + qIdx;
             const borderSide = isRTL ? 'border-r-4 pr-4' : 'border-l-4 pl-4';
             html += `
-                <li class="${borderSide} border-teal-500 py-2" id="q-${globalIdx}">
+                <li class="${borderSide} border-indigo-500 py-2" id="q-${globalIdx}">
                     <strong>${globalIdx + 1}.</strong> ${q.q[currentLang]}<br>`;
                     
             q.options.forEach((opt, oIdx) => {
@@ -415,7 +452,6 @@ function renderExam() {
     container.innerHTML = html;
 }
 
-// ==================== TIMER ====================
 function startTimer() {
     document.getElementById('timer-container').style.display = 'block';
     timerInterval = setInterval(() => {
@@ -437,38 +473,39 @@ function toggleAnswers() {
     document.querySelectorAll('.answer-box').forEach(el => el.classList.toggle('hidden'));
 }
 
-// ==================== GRADING ====================
 function gradeExam() {
     let correctCount = 0;
     const correctAnswersLetters = [
-        'b','a','b','b',  // Q1-4: Complex Plane & Polar
-        'c','b','a','c',  // Q5-8: Mult & Div
-        'c','c','b','a',  // Q9-12: De Moivre
-        'c','b','b','b'   // Q13-16: Roots
+        'b','a','a','a',  // Q1-4: Introduction
+        'a','a','a','a',  // Q5-8: Coordinate Plane
+        'a','b','a','a',  // Q9-12: Dot Product
+        'a','a','a','a',  // Q13-16: 3D Space
+        'a','a','a','a'   // Q17-20: Cross Product
     ];
     
-    let sec1 = 0, sec2 = 0, sec3 = 0, sec4 = 0;
+    let sec1 = 0, sec2 = 0, sec3 = 0, sec4 = 0, sec5 = 0;
     
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 0; i < 20; i++) {
         const selected = document.querySelector(`input[name="q${i}"]:checked`);
         const li = document.getElementById(`q-${i}`);
-        const isCorrect = selected && selected.value === correctAnswersLetters[i-1];
+        const isCorrect = selected && selected.value === correctAnswersLetters[i];
         
         if (isCorrect) {
             correctCount++;
             li.classList.add('correct');
             li.classList.remove('incorrect');
-            if (i <= 4) sec1++;
-            else if (i <= 8) sec2++;
-            else if (i <= 12) sec3++;
-            else sec4++;
+            if (i < 4) sec1++;
+            else if (i < 8) sec2++;
+            else if (i < 12) sec3++;
+            else if (i < 16) sec4++;
+            else sec5++;
         } else {
             li.classList.add('incorrect');
             li.classList.remove('correct');
         }
     }
 
-    const score = (correctCount / 16) * 100;
+    const score = (correctCount / 20) * 100;
     const successRate = Math.round(score);
     
     document.getElementById('res-total').textContent = `${Math.round(score)} / 100`;
@@ -479,6 +516,7 @@ function gradeExam() {
     document.getElementById('sec2-score').textContent = `${sec2}/4`;
     document.getElementById('sec3-score').textContent = `${sec3}/4`;
     document.getElementById('sec4-score').textContent = `${sec4}/4`;
+    document.getElementById('sec5-score').textContent = `${sec5}/4`;
     
     const badge = document.getElementById('success-badge');
     const percent = document.getElementById('success-percent');
@@ -501,7 +539,6 @@ function gradeExam() {
     document.getElementById('sendEmailBtn').classList.remove('hidden');
 }
 
-// ==================== EMAIL ====================
 function sendResultsToEmail() {
     const btn = document.getElementById('sendEmailBtn');
     const status = document.getElementById('emailStatus');
@@ -517,34 +554,36 @@ function sendResultsToEmail() {
     const sec2 = document.getElementById('sec2-score').textContent;
     const sec3 = document.getElementById('sec3-score').textContent;
     const sec4 = document.getElementById('sec4-score').textContent;
+    const sec5 = document.getElementById('sec5-score').textContent;
 
     const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
     const font = currentLang === 'ar' ? 'Cairo' : 'Inter';
     
     const sectionNames = {
-        ar: ['المستوى المركب والتحويل القطبي', 'الضرب والقسمة القطبية', 'نظرية ديموافر', 'الجذور النونية وجذور الوحدة'],
-        en: ['Complex Plane & Polar Conversion', 'Multiplication & Division in Polar Form', 'De Moivre\'s Theorem', 'Roots of Complex Numbers & Unity']
+        ar: ['مقدمة في المتجهات والعمليات', 'المتجهات في المستوى الإحداثي', 'الضرب النقطي ومساقط المتجهات', 'المتجهات في الفضاء ثلاثي الأبعاد', 'الضرب المتجهي وتطبيقاته'],
+        en: ['Introduction & Operations', 'Vectors in Coordinate Plane', 'Dot Product & Projections', 'Vectors in 3D Space', 'Cross Product & Applications']
     };
     const sn = sectionNames[currentLang];
 
     let answersHTML = `<div dir="${dir}" style="font-family: '${font}', sans-serif;">
-        <h3 style="color:#0d9488;">📊 ${currentLang === 'ar' ? 'تفصيل الأداء - امتحان الأعداد المركبة والصيغة القطبية (1.5)' : 'Performance Details - Complex Numbers & Polar Form Exam (1.5)'}:</h3>
+        <h3 style="color:#4F46E5;">📊 ${currentLang === 'ar' ? 'تفصيل الأداء - امتحان المتجهات' : 'Performance Details - Vectors Exam'}:</h3>
         <p><strong>${currentLang === 'ar' ? 'الطالب' : 'Student'}:</strong> ${name} | <strong>${currentLang === 'ar' ? 'الشعبة' : 'Class'}:</strong> ${studentClass}</p>
         <ul>
             <li>${sn[0]}: ${sec1}</li>
             <li>${sn[1]}: ${sec2}</li>
             <li>${sn[2]}: ${sec3}</li>
             <li>${sn[3]}: ${sec4}</li>
+            <li>${sn[4]}: ${sec5}</li>
         </ul>
         <table style="border:1px solid #e5e7eb; border-collapse:collapse; width:100%; font-size:14px; direction: ${dir};">
-        <tr style="background:#0d9488; color:white;"><th style="border:1px solid #e5e7eb; padding:8px;">${currentLang === 'ar' ? 'السؤال' : 'Q#'}</th><th style="border:1px solid #e5e7eb; padding:8px;">${currentLang === 'ar' ? 'الإجابة المختارة' : 'Selected'}</th><th style="border:1px solid #e5e7eb; padding:8px;">${currentLang === 'ar' ? 'الحالة' : 'Status'}</th></tr>`;
+        <tr style="background:#4F46E5; color:white;"><th style="border:1px solid #e5e7eb; padding:8px;">${currentLang === 'ar' ? 'السؤال' : 'Q#'}</th><th style="border:1px solid #e5e7eb; padding:8px;">${currentLang === 'ar' ? 'الإجابة المختارة' : 'Selected'}</th><th style="border:1px solid #e5e7eb; padding:8px;">${currentLang === 'ar' ? 'الحالة' : 'Status'}</th></tr>`;
     
-    const correctAnswersLetters = ['b','a','b','b','c','b','a','c','c','c','b','a','c','b','b','b'];
+    const correctAnswersLetters = ['b','a','a','a','a','a','a','a','a','b','a','a','a','a','a','a','a','a','a','a'];
     
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 0; i < 20; i++) {
         const sel = document.querySelector(`input[name="q${i}"]:checked`);
-        const isCorrect = sel && sel.value === correctAnswersLetters[i-1];
-        answersHTML += `<tr><td style="border:1px solid #e5e7eb; padding:6px;">${i}</td><td style="border:1px solid #e5e7eb; padding:6px;">${sel ? sel.value.toUpperCase() : '-'}</td><td style="border:1px solid #e5e7eb; padding:6px; color:${isCorrect ? 'green' : 'red'}">${isCorrect ? '✅ ' + (currentLang === 'ar' ? 'صحيح' : 'Correct') : '❌ ' + (currentLang === 'ar' ? 'خطأ' : 'Wrong')}</td></tr>`;
+        const isCorrect = sel && sel.value === correctAnswersLetters[i];
+        answersHTML += `<tr><td style="border:1px solid #e5e7eb; padding:6px;">${i + 1}</td><td style="border:1px solid #e5e7eb; padding:6px;">${sel ? sel.value.toUpperCase() : '-'}</td><td style="border:1px solid #e5e7eb; padding:6px; color:${isCorrect ? 'green' : 'red'}">${isCorrect ? '✅ ' + (currentLang === 'ar' ? 'صحيح' : 'Correct') : '❌ ' + (currentLang === 'ar' ? 'خطأ' : 'Wrong')}</td></tr>`;
     }
     answersHTML += '</table></div>';
 
@@ -578,7 +617,6 @@ function sendResultsToEmail() {
         });
 }
 
-// Initialize
 window.addEventListener('DOMContentLoaded', () => {
     renderExam();
     startTimer();
